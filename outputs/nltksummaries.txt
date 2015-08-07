@@ -1,0 +1,343 @@
+Summaries of NLTK Book
+
+
+Chapter 1
+
+    Table 1.1:
+
+Lexical Diversity of Various Genres in the Brown Corpus
+
+Genre 	Tokens 	Types 	Lexical diversity
+skill and hobbies 	82345 	11935 	6.9
+humor 	21695 	5017 	4.3
+fiction: science 	14470 	3233 	4.5
+press: reportage 	100554 	14394 	7.0
+fiction: romance 	70022 	8452 	8.3
+religion 	39399 	6373 	6.2
+
+Table 1.2:
+
+Functions Defined for NLTK's Frequency Distributions
+
+Example 	Description
+fdist = FreqDist(samples) 	create a frequency distribution containing the given samples
+fdist.inc(sample) 	increment the count for this sample
+fdist['monstrous'] 	count of the number of times a given sample occurred
+fdist.freq('monstrous') 	frequency of a given sample
+fdist.N() 	total number of samples
+fdist.keys() 	the samples sorted in order of decreasing frequency
+for sample in fdist: 	iterate over the samples, in order of decreasing frequency
+fdist.max() 	sample with the greatest count
+fdist.tabulate() 	tabulate the frequency distribution
+fdist.plot() 	graphical plot of the frequency distribution
+fdist.plot(cumulative=True) 	cumulative plot of the frequency distribution
+fdist1 < fdist2 	test if samples in fdist1 occur less frequently than in fdist2
+
+Table 1.4:
+
+Some Word Comparison Operators
+
+Function 	Meaning
+s.startswith(t) 	test if s starts with t
+s.endswith(t) 	test if s ends with t
+t in s 	test if t is contained inside s
+s.islower() 	test if all cased characters in s are lowercase
+s.isupper() 	test if all cased characters in s are uppercase
+s.isalpha() 	test if all characters in s are alphabetic
+s.isalnum() 	test if all characters in s are alphanumeric
+s.isdigit() 	test if all characters in s are digits
+s.istitle() 	test if s is titlecased (all words in s have have initial capitals)
+
+
+
+
+
+    Texts are represented in Python using lists: ['Monty', 'Python']. We can use indexing, slicing, and the len() function on lists.
+
+    A word "token" is a particular appearance of a given word in a text; a word "type" is the unique form of the word as a particular sequence of letters. We count word tokens using len(text) and word types using len(set(text)).
+
+    We obtain the vocabulary of a text t using sorted(set(t)).
+
+    We operate on each item of a text using [f(x) for x in text].
+
+    To derive the vocabulary, collapsing case distinctions and ignoring punctuation, we can write set([w.lower() for w in text if w.isalpha()]).
+
+    We process each word in a text using a for statement, such as for w in t: or for word in text:. This must be followed by the colon character and an indented block of code, to be executed each time through the loop.
+
+    We test a condition using an if statement: if len(word) < 5:. This must be followed by the colon character and an indented block of code, to be executed only if the condition is true.
+
+    A frequency distribution is a collection of items along with their frequency counts (e.g., the words of a text and their frequency of appearance).
+
+    A function is a block of code that has been assigned a name and can be reused. Functions are defined using the def keyword, as in def mult(x, y); x and y are parameters of the function, and act as placeholders 
+         for actual data values.
+
+    A function is called by specifying its name followed by one or more arguments inside parentheses, like this: mult(3, 4), e.g., len(text1).
+
+
+Chapter 2
+
+
+Table 2.2:
+
+Some of the Corpora and Corpus Samples Distributed with NLTK: For information about downloading and using them, please consult the NLTK website.
+
+Corpus 	Compiler 	Contents
+Brown Corpus 	Francis, Kucera 	15 genres, 1.15M words, tagged, categorized
+CESS Treebanks 	CLiC-UB 	1M words, tagged and parsed (Catalan, Spanish)
+Chat-80 Data Files 	Pereira & Warren 	World Geographic Database
+CMU Pronouncing Dictionary 	CMU 	127k entries
+CoNLL 2000 Chunking Data 	CoNLL 	270k words, tagged and chunked
+CoNLL 2002 Named Entity 	CoNLL 	700k words, pos- and named-entity-tagged (Dutch, Spanish)
+CoNLL 2007 Dependency Treebanks (sel) 	CoNLL 	150k words, dependency parsed (Basque, Catalan)
+Dependency Treebank 	Narad 	Dependency parsed version of Penn Treebank sample
+Floresta Treebank 	Diana Santos et al 	9k sentences, tagged and parsed (Portuguese)
+Gazetteer Lists 	Various 	Lists of cities and countries
+Genesis Corpus 	Misc web sources 	6 texts, 200k words, 6 languages
+Gutenberg (selections) 	Hart, Newby, et al 	18 texts, 2M words
+Inaugural Address Corpus 	CSpan 	US Presidential Inaugural Addresses (1789-present)
+Indian POS-Tagged Corpus 	Kumaran et al 	60k words, tagged (Bangla, Hindi, Marathi, Telugu)
+MacMorpho Corpus 	NILC, USP, Brazil 	1M words, tagged (Brazilian Portuguese)
+Movie Reviews 	Pang, Lee 	2k movie reviews with sentiment polarity classification
+Names Corpus 	Kantrowitz, Ross 	8k male and female names
+NIST 1999 Info Extr (selections) 	Garofolo 	63k words, newswire and named-entity SGML markup
+NPS Chat Corpus 	Forsyth, Martell 	10k IM chat posts, POS-tagged and dialogue-act tagged
+PP Attachment Corpus 	Ratnaparkhi 	28k prepositional phrases, tagged as noun or verb modifiers
+Proposition Bank 	Palmer 	113k propositions, 3300 verb frames
+Question Classification 	Li, Roth 	6k questions, categorized
+Reuters Corpus 	Reuters 	1.3M words, 10k news documents, categorized
+Roget's Thesaurus 	Project Gutenberg 	200k words, formatted text
+RTE Textual Entailment 	Dagan et al 	8k sentence pairs, categorized
+SEMCOR 	Rus, Mihalcea 	880k words, part-of-speech and sense tagged
+Senseval 2 Corpus 	Pedersen 	600k words, part-of-speech and sense tagged
+Shakespeare texts (selections) 	Bosak 	8 books in XML format
+State of the Union Corpus 	CSPAN 	485k words, formatted text
+Stopwords Corpus 	Porter et al 	2,400 stopwords for 11 languages
+Swadesh Corpus 	Wiktionary 	comparative wordlists in 24 languages
+Switchboard Corpus (selections) 	LDC 	36 phonecalls, transcribed, parsed
+Univ Decl of Human Rights 	United Nations 	480k words, 300+ languages
+Penn Treebank (selections) 	LDC 	40k words, tagged and parsed
+TIMIT Corpus (selections) 	NIST/LDC 	audio files and transcripts for 16 speakers
+VerbNet 2.1 	Palmer et al 	5k verbs, hierarchically organized, linked to WordNet
+Wordlist Corpus 	OpenOffice.org et al 	960k words and 20k affixes for 8 languages
+WordNet 3.0 (English) 	Miller, Fellbaum 	145k synonym sets
+
+Table 2.3:
+
+Basic Corpus Functionality defined in NLTK: more documentation can be found using help(nltk.corpus.reader) and by reading the online Corpus HOWTO at http://www.nltk.org/howto.
+
+Example 	Description
+fileids() 	the files of the corpus
+fileids([categories]) 	the files of the corpus corresponding to these categories
+categories() 	the categories of the corpus
+categories([fileids]) 	the categories of the corpus corresponding to these files
+raw() 	the raw content of the corpus
+raw(fileids=[f1,f2,f3]) 	the raw content of the specified files
+raw(categories=[c1,c2]) 	the raw content of the specified categories
+words() 	the words of the whole corpus
+words(fileids=[f1,f2,f3]) 	the words of the specified fileids
+words(categories=[c1,c2]) 	the words of the specified categories
+sents() 	the sentences of the whole corpus
+sents(fileids=[f1,f2,f3]) 	the sentences of the specified fileids
+sents(categories=[c1,c2]) 	the sentences of the specified categories
+abspath(fileid) 	the location of the given file on disk
+encoding(fileid) 	the encoding of the file (if known)
+open(fileid) 	open a stream for reading the given corpus file
+root() 	the path to the root of locally installed corpus
+readme() 	the contents of the README file of the corpus
+
+Table 2.4:
+
+NLTK's Conditional Frequency Distributions: commonly-used methods and idioms for defining, accessing, and visualizing a conditional frequency distribution. of counters.
+
+Example 	Description
+cfdist = ConditionalFreqDist(pairs) 	create a conditional frequency distribution from a list of pairs
+cfdist.conditions() 	alphabetically sorted list of conditions
+cfdist[condition] 	the frequency distribution for this condition
+cfdist[condition][sample] 	frequency for the given sample for this condition
+cfdist.tabulate() 	tabulate the conditional frequency distribution
+cfdist.tabulate(samples, conditions) 	tabulation limited to the specified samples and conditions
+cfdist.plot() 	graphical plot of the conditional frequency distribution
+cfdist.plot(samples, conditions) 	graphical plot limited to the specified samples and conditions
+cfdist1 < cfdist2 	test if samples in cfdist1 occur less frequently than in cfdist2
+
+	
+    A text corpus is a large, structured collection of texts. NLTK comes with many corpora, e.g., the Brown Corpus, nltk.corpus.brown.
+
+    Some text corpora are categorized, e.g., by genre or topic; sometimes the categories of a corpus overlap each other.
+
+    A conditional frequency distribution is a collection of frequency distributions, each one for a different condition. They can be used for counting word frequencies, given a context or a genre.
+
+    Python programs more than a few lines long should be entered using a text editor, saved to a file with a .py extension, and accessed using an import statement.
+
+    Python functions permit you to associate a name with a particular block of code, and re-use that code as often as necessary.
+
+    Some functions, known as "methods", are associated with an object and we give the object name followed by a period followed by the function, like this: x.funct(y), e.g., word.isalpha().
+
+    To find out about some variable v, type help(v) in the Python interactive interpreter to read the help entry for this kind of object.
+
+    WordNet is a semantically-oriented dictionary of English, consisting of synonym sets — or synsets — and organized into a network.
+
+    Some functions are not available by default, but must be accessed using Python's import statement.
+
+
+Chapter 3
+
+Table 3.2:
+
+Useful String Methods: operations on strings in addition to the string tests shown in Table 1.4; all methods produce a new string or list
+
+Method 	Functionality
+s.find(t) 	index of first instance of string t inside s (-1 if not found)
+s.rfind(t) 	index of last instance of string t inside s (-1 if not found)
+s.index(t) 	like s.find(t) except it raises ValueError if not found
+s.rindex(t) 	like s.rfind(t) except it raises ValueError if not found
+s.join(text) 	combine the words of the text into a string using s as the glue
+s.split(t) 	split s into a list wherever a t is found (whitespace by default)
+s.splitlines() 	split s into a list of strings, one per line
+s.lower() 	a lowercased version of the string s
+s.upper() 	an uppercased version of the string s
+s.title() 	a titlecased version of the string s
+s.strip() 	a copy of s without leading or trailing whitespace
+s.replace(t, u) 	replace instances of t with u inside s
+
+Table 3.3:
+
+Basic Regular Expression Meta-Characters, Including Wildcards, Ranges and Closures
+
+Operator 	Behavior
+. 	Wildcard, matches any character
+^abc 	Matches some pattern abc at the start of a string
+abc$ 	Matches some pattern abc at the end of a string
+[abc] 	Matches one of a set of characters
+[A-Z0-9] 	Matches one of a range of characters
+ed|ing|s 	Matches one of the specified strings (disjunction)
+* 	Zero or more of previous item, e.g. a*, [a-z]* (also known as Kleene Closure)
++ 	One or more of previous item, e.g. a+, [a-z]+
+? 	Zero or one of the previous item (i.e. optional), e.g. a?, [a-z]?
+{n} 	Exactly n repeats where n is a non-negative integer
+{n,} 	At least n repeats
+{,n} 	No more than n repeats
+{m,n} 	At least m and no more than n repeats
+
+Table 3.4:
+
+Regular Expression Symbols
+
+Symbol 	Function
+\b 	Word boundary (zero width)
+\d 	Any decimal digit (equivalent to [0-9])
+\D 	Any non-digit character (equivalent to [^0-9])
+\s 	Any whitespace character (equivalent to [ \t\n\r\f\v]
+\S 	Any non-whitespace character (equivalent to [^ \t\n\r\f\v])
+\w 	Any alphanumeric character (equivalent to [a-zA-Z0-9_])
+\W 	Any non-alphanumeric character (equivalent to [^a-zA-Z0-9_])
+\t 	The tab character
+\n 	The newline character
+
+
+Chapter 4
+
+Table 4.1:
+
+Various ways to iterate over sequences
+
+Python Expression 	Comment
+for item in s 	iterate over the items of s
+for item in sorted(s) 	iterate over the items of s in order
+for item in set(s) 	iterate over unique elements of s
+for item in reversed(s) 	iterate over elements of s in reverse
+for item in set(s).difference(t) 	iterate over elements of s not in t
+for item in random.shuffle(s) 	iterate over elements of s in random order
+
+Chapter 5
+
+Table 5.5:
+
+Python's Dictionary Methods: A summary of commonly-used methods and idioms involving dictionaries.
+
+Example 	Description
+d = {} 	create an empty dictionary and assign it to d
+d[key] = value 	assign a value to a given dictionary key
+d.keys() 	the list of keys of the dictionary
+list(d) 	the list of keys of the dictionary
+sorted(d) 	the keys of the dictionary, sorted
+key in d 	test whether a particular key is in the dictionary
+for key in d 	iterate over the keys of the dictionary
+d.values() 	the list of values in the dictionary
+dict([(k1,v1), (k2,v2), ...]) 	create a dictionary from a list of key-value pairs
+d1.update(d2) 	add all items from d2 to d1
+defaultdict(int) 	a dictionary whose default value is zero
+
+
+
+
+
+    In this book we view a text as a list of words. A "raw text" is a potentially long string containing words and whitespace formatting, and is how we typically store and visualize a text.
+
+    A string is specified in Python using single or double quotes: 'Monty Python', "Monty Python".
+
+    The characters of a string are accessed using indexes, counting from zero: 'Monty Python'[0] gives the value M. The length of a string is found using len().
+
+    Substrings are accessed using slice notation: 'Monty Python'[1:5] gives the value onty. If the start index is omitted, the substring begins at the start of the string; if the end index is omitted, 
+        the slice continues to the end of the string.
+
+    Strings can be split into lists: 'Monty Python'.split() gives ['Monty', 'Python']. Lists can be joined into strings: '/'.join(['Monty', 'Python']) gives 'Monty/Python'.
+
+    We can read text from a file f using text = open(f).read(). We can read text from a URL u using text = urlopen(u).read(). We can iterate over the lines of a text file using for line in open(f).
+
+    Texts found on the web may contain unwanted material (such as headers, footers, markup), that need to be removed before we do any linguistic processing.
+
+    Tokenization is the segmentation of a text into basic units — or tokens — such as words and punctuation. Tokenization based on whitespace is inadequate for many applications because it 
+        bundles punctuation together with words. NLTK provides an off-the-shelf tokenizer nltk.word_tokenize().
+
+    Lemmatization is a process that maps the various forms of a word (such as appeared, appears) to the canonical or citation form of the word, also known as the lexeme or lemma (e.g. appear).
+
+    Regular expressions are a powerful and flexible method of specifying patterns. Once we have imported the re module, we can use re.findall() to find all substrings in a string that match a pattern.
+
+    If a regular expression string includes a backslash, you should tell Python not to preprocess the string, by using a raw string with an r prefix: r'regexp'.
+
+    When backslash is used before certain characters, e.g. \n, this takes on a special meaning (newline character); however, when backslash is used before regular expression wildcards and operators, 
+        e.g. \., \|, \$, these characters lose their special meaning and are matched literally.
+
+    A string formatting expression template % arg_tuple consists of a format string template that contains conversion specifiers like %-6s and %0.2d.
+
+    Python's assignment and parameter passing use object references; e.g. if a is a list and we assign b = a, then any operation on a will modify b, and vice versa.
+
+    The is operation tests if two objects are identical internal objects, while == tests if two objects are equivalent. This distinction parallels the type-token distinction.
+
+    Strings, lists and tuples are different kinds of sequence object, supporting common operations such as indexing, slicing, len(), sorted(), and membership testing using in.
+
+    We can write text to a file by opening the file for writing ofile = open('output.txt', 'w'), then adding content to the file ofile.write("Monty Python"), and finally closing the file ofile.close().
+
+    A declarative programming style usually produces more compact, readable code; manually-incremented loop variables are usually unnecessary; when a sequence must be enumerated, use enumerate().
+
+    Functions are an essential programming abstraction: key concepts to understand are parameter passing, variable scope, and docstrings.
+
+    A function serves as a namespace: names defined inside a function are not visible outside that function, unless those names are declared to be global.
+
+    Modules permit logically-related material to be localized in a file. A module serves as a namespace: names defined in a module — such as variables and functions — are not visible to other modules, unless those names are imported.
+
+    Dynamic programming is an algorithm design technique used widely in NLP that stores the results of previous computations in order to avoid unnecessary recomputation.
+
+    Words can be grouped into classes, such as nouns, verbs, adjectives, and adverbs. These classes are known as lexical categories or parts of speech. Parts of speech are assigned short labels, or tags, such as NN, VB,
+
+    The process of automatically assigning parts of speech to words in text is called part-of-speech tagging, POS tagging, or just tagging.
+
+    Automatic tagging is an important step in the NLP pipeline, and is useful in a variety of situations including: predicting the behavior of previously unseen words, analyzing word usage in corpora, and text-to-speech systems.
+    Some linguistic corpora, such as the Brown Corpus, have been POS tagged.
+
+    A variety of tagging methods are possible, e.g. default tagger, regular expression tagger, unigram tagger and n-gram taggers. These can be combined using a technique known as backoff.
+
+    Taggers can be trained and evaluated using tagged corpora.
+
+    Backoff is a method for combining models: when a more specialized model (such as a bigram tagger) cannot assign a tag in a given context, we backoff to a more general model (such as a unigram tagger).
+
+    Part-of-speech tagging is an important, early example of a sequence classification task in NLP: a classification decision at any one point in the sequence makes use of words and tags in the local context.
+
+    A dictionary is used to map between arbitrary types of information, such as a string and a number: freq['cat'] = 12. We create dictionaries using the brace notation: pos = {}, pos = {'furiously': 'adv', 'ideas': 'n', 'colorless': 'adj'}.
+
+    N-gram taggers can be defined for large values of n, but once n is larger than 3 we usually encounter the sparse data problem; even with a large quantity of training data we only see a tiny fraction of possible contexts.
+
+    Transformation-based tagging involves learning a series of repair rules of the form "change tag s to tag t in context c", where each rule fixes mistakes and possibly introduces a (smaller) number of errors.
+
+
