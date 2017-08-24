@@ -5,8 +5,8 @@ from nltk.metrics.association import *
 
 class NgramUtils(object):
 
-    def __init__(self):
-        self.text = self.buildtext()
+    def __init__(self, sourcestring):
+        self.text = self.buildtext(sourcestring)
         self.tokens = self.prepareTokens(self.text)
 
     def importFromLocal(self, filename):
@@ -15,25 +15,29 @@ class NgramUtils(object):
         raw.lower()
         return raw
 
-    def buildtext(self):
-        text = self.importFromLocal('sourcemats/caswinburne.txt')
-        #text = importFromLocal('sourcemats/aeondump.txt') + importFromLocal('sourcemats/curioustaleshort.txt') + importFromLocal('sourcemats/swinburne.txt') + importFromLocal('sourcemats/ninlyrics.txt')
-        #text = importFromLocal('swinburne.txt') + importFromLocal('ninlyrics.txt') + importFromLocal('neruda.txt') + importFromLocal('EAPoe.txt')+ importFromLocal('rossetti.txt')
-        text.lower()
+    def buildtext(self, sourcestring):
+        text = ' '.join([self.importFromLocal(s) for s in sourcestring])
         return text
 
+    def removeThingsFromList(self, possibleList):
+        list_with_things_removed = possibleList
+        removeList = ['"'"", '.', ',','.', ';','!']
+        for i in removeList:
+            if list_with_things_removed.__contains__(i):
+                list_with_things_removed.remove(i)
+        return list_with_things_removed
+
     def prepareTokens(self, text):
-        #text = buildtext()
         tokens = nltk.wordpunct_tokenize(text)
         return tokens
 
-    def buildThingList(self, myword, scored_ngrams):
-        thinglist = []
+    def buildCollocationsList(self, myword, scored_ngrams):
+        collocationslist = []
         for element in scored_ngrams:
             if element[0] == myword:
                 for word in element[1:]:
-                    thinglist.append(word)
-        return thinglist
+                    collocationslist.append(word)
+        return collocationslist
 
     def assocMeasuresSwitcher(self, number_of_grams):
         function_list = [BigramAssocMeasures, TrigramAssocMeasures, QuadgramAssocMeasures]
@@ -47,14 +51,14 @@ class NgramUtils(object):
         ngram_measures_func = self.assocMeasuresSwitcher(number_of_grams)
         ngram_measures = ngram_measures_func()
         finder_func = self.finderSwitcher(number_of_grams)
-        finder = finder_func(self.tokens)
-        finder.apply_freq_filter(1)
+        finder = finder_func(self.tokens, window_size=4)
+        finder.apply_freq_filter(2)
         scored = finder.score_ngrams(ngram_measures.raw_freq)
         return  sorted(ngram for ngram, score in scored)
 
-    def findcollocations(self, myword, number_of_grams = 4):
+    def findcollocations(self, myword, number_of_grams = 2):
         scoredNgrams =  self.buildScoredNgramsList(myword, number_of_grams)
-        return self.buildThingList(myword, scoredNgrams)
+        return self.buildCollocationsList(myword, scoredNgrams)
 
     def findonecollocation(self, myword):
         thinglist = self.findcollocations(myword)
@@ -66,7 +70,6 @@ class NgramUtils(object):
         return collocation
 
     def generateresult(self, myword):
-        buildtext()
         result = []
         result.append(myword)
         for i in range (100):
